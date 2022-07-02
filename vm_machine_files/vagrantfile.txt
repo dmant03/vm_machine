@@ -1,0 +1,37 @@
+# This is the steps to create VM Virtual Box and Create Virtual Linux ubuntu machine
+# Step - 1 = Download Virtual Box in your local machine
+# Step - 2 = Restart your machine 
+# Step - 3 = Create  folder i.e. 
+	C:/VMimages/LinuxMachine
+# Step - 4 = go to LinuxMachine folder and in address bar write 'cmd' so that command prompt will open 
+# Step - 5 = Check if you have Vagrant package download or not ?
+	vagrant --version 
+		if NOT then choco install vagrant 
+	check the version now
+	vagrant --version
+# Step - 6 = initiate the vagrant file
+	-> It will create vagrantfile in the folder
+# Step - 7 amaend the Vagrant file - configure i.t
+ 
+Vagrant.configure("2") do |config|
+  config.vm.define "v", primary: true do |v|
+    v.vm.box = "bento/ubuntu-18.04"
+    v.vm.hostname = 'practice-vm'
+    v.vm.network :private_network, ip: "192.168.56.101"    
+	
+	v.vm.provider :virtualbox do |v|
+	  v.customize ["modifyvm", :id, "--name", "practice-vm"]
+	  v.customize ["modifyvm", :id, "--memory", 1024]
+	  v.customize ["modifyvm", :id, "--cpus", 1]
+    end	 
+ end
+end
+
+# Step - 8 = Vagrnat up 
+	-> it will start Vertual machine 
+# Step - 9 =  to use Vertual machine on the open terminal 
+	# vagrant ssh 
+
+you are in your vartual machine - Linux server. you start to use it. 
+
+
